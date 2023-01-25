@@ -14,7 +14,22 @@ const getDomains = async (domain) => {
 
     if (res.ok) {
       let data = await res.json();
-      console.log(data);
+      let visits = data.EstimatedMonthlyVisits;
+      let months = [];
+      let visitsPerMonth = [];
+
+      let keys = Object.keys(visits);
+      let values = Object.values(visits);
+
+      keys.forEach((key) => {
+        months.push(key);
+      });
+      values.forEach((value) => {
+        visitsPerMonth.push(value);
+      });
+      console.log(months);
+      console.log(visitsPerMonth);
+      renderChart(months, visits);
     }
   } catch (error) {}
 };
