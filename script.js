@@ -38,9 +38,8 @@ const getDomains = async (domain) => {
 };
 
 function renderChart(labels, data) {
-  // console.log("called");
   var ctx = document.getElementById("myChart").getContext("2d");
-  var myChart = new Chart(ctx, {
+  new Chart(ctx, {
     type: "line",
     data: {
       labels: labels,
