@@ -5,6 +5,9 @@ const options = {
     "X-RapidAPI-Host": "similar-web.p.rapidapi.com",
   },
 };
+let testData = [];
+let testValue = [];
+
 const getDomains = async (domain) => {
   try {
     const res = await fetch(
@@ -22,18 +25,72 @@ const getDomains = async (domain) => {
       let values = Object.values(visits);
 
       keys.forEach((key) => {
-        months.push(key);
+        testValue.push(key);
+        console.log(key);
       });
       values.forEach((value) => {
-        visitsPerMonth.push(value);
+        testData.push(value);
+        console.log(value);
       });
       console.log(months);
       console.log(visitsPerMonth);
-      renderChart(months, visits);
+      getData(months, visits);
     }
   } catch (error) {}
 };
 
+// const renderChart = (months, visits) => {
+//   const ctx = document.getElementById("myChart");
+
+//   new Chart(ctx, {
+//     type: "line ",
+//     data: {
+//       labels: months,
+//       datasets: [
+//         {
+//           label: "# of Votes",
+//           data: visits,
+//           borderWidth: 1,
+//         },
+//       ],
+//     },
+//     options: {
+//       scales: {
+//         y: {
+//           beginAtZero: true,
+//         },
+//       },
+//     },
+//   });
+// };
+
+function renderChart(data, labels) {
+  // console.log("called");
+  var ctx = document.getElementById("myChart").getContext("2d");
+  var myChart = new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: "This week",
+          data: data,
+        },
+      ],
+    },
+  });
+}
+
+const getData = () => {
+  console.log(testData);
+  console.log(testValue);
+  data = testData;
+  labels = testValue;
+
+  console.log(data);
+  renderChart(data, labels);
+};
+
 window.onload = () => {
-  getDomains("avatarai.me");
+  getDomains("epicode.com");
 };
