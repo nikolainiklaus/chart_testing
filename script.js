@@ -86,7 +86,7 @@ function renderChart(labels, data, domain) {
       labels: labels,
       datasets: [
         {
-          label: "# of Votes",
+          label: domain,
           data: data,
           borderWidth: 2,
         },
