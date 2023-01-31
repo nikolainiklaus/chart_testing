@@ -5,7 +5,7 @@ const options = {
     "X-RapidAPI-Host": "similar-web.p.rapidapi.com",
   },
 };
-let domains = ["google.com", "avatarai.me"];
+let domains = ["google.com", "amazon.com"];
 const dataPoints = [];
 const testData = [12, 19, 3, 5, 2, 3];
 const testLabels = ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"];
@@ -30,7 +30,7 @@ const fetchDomains = async () => {
 };
 
 const prepareForRender = () => {
-  console.log("teest", dataPoints.length);
+  // console.log("teest", dataPoints.length);
 
   for (let dataPoint of dataPoints) {
     let chartContainerNode = document.getElementById("chart-container-outer");
@@ -57,6 +57,7 @@ const prepareForRender = () => {
 };
 
 function renderChart(labels, data, domain) {
+  //generating random text for ctx
   function makeid(length) {
     let result = "";
     const characters =
@@ -80,7 +81,7 @@ function renderChart(labels, data, domain) {
 
   ctx = document.getElementById(domain).getContext("2d");
   new Chart(ctx, {
-    type: "bar",
+    type: "line",
     data: {
       labels: labels,
       datasets: [
@@ -100,18 +101,6 @@ function renderChart(labels, data, domain) {
     },
   });
 
-  // new Chart(ctx, {
-  //   type: "line",
-  //   data: {
-  //     labels: labels,
-  //     datasets: [
-  //       {
-  //         label: `${domain}`,
-  //         data: data,
-  //       },
-  //     ],
-  //   },
-  // });
   console.log("rendered a chart");
 }
 
